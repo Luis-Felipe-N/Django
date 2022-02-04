@@ -1,0 +1,1 @@
+# Para indicar que a pasta 'controle_visitantes' sejá tratada como um pacote
