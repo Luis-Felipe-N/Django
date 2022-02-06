@@ -1,4 +1,4 @@
 from django.contrib import admin
-from porteiros.models import Porteiros
+from porteiros.models import Porteiro
 
-admin.site.register( Porteiros )
+admin.site.register( Porteiro )

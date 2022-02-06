@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Porteiros(models.Model):
+class Porteiro(models.Model):
 
     usuario = models.OneToOneField(
         "usuarios.Usuario",
