@@ -1,8 +1,13 @@
 from django.shortcuts import render
+from visitantes.forms import VisitanteForm
 
-# Create your views here.
 def registrar_visitantes( request ):
 
-    context = {}
+    form = VisitanteForm
+
+    context = {
+        "nome_pagina": "Registrar visitantes",
+        "form": form
+    }
 
     return render( request , 'registrar_visitante.html', context )

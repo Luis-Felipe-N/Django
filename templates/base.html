@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 {% load static %}
+<!-- Essa tag permite usar arquivos no template -->
 
 <html lang="pt-br">
     <head>
@@ -30,7 +31,7 @@
                 <hr class="sidebar-divider my-0">
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="/">
+                    <a class="nav-link" href="#">
                         <i class="fas fa-home"></i>
                         <span>Início</span>
                     </a>
@@ -64,31 +65,7 @@
                         </ul>
                     </nav>
 
-                    <div class="container">
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">{{ nome_pagina }}</h1>
-                        </div>
-                    
-                        <div class="card shadow mb-4">
-                            <div class="card-body">
-                                <h4 class="mb-3 text-primary">
-                                    Formulário para registro de novo visitante
-                                </h4>
-                    
-                                <form method="post" enctype="multipart/form-data">
-                                    <div class="form-row">
-                                        <p class="ml-2">Aqui deveria ter um formulário</p>
-                                    </div>
-                    
-                                    <div class="text-right">
-                                        <button class="btn btn-primary" type="submit">
-                                            <span class="text">Registrar visitante</span>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    {% block conteudo %} {% endblock conteudo %}
 
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
