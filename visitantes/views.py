@@ -1,6 +1,8 @@
 from django.contrib import messages
 from multiprocessing import context
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
+
+from visitantes.models import Visitante
 from visitantes.forms import VisitanteForm
 
 
@@ -30,3 +32,17 @@ def registrar_visitantes(request):
     }
 
     return render( request, 'registrar_visitante.html', context)
+
+def informacao_visitantes(request, id):
+
+    visitante = get_object_or_404(Visitante, id=id)
+
+    print('Esse é o vsitante encontrado: ')
+    print(id, visitante)
+
+    context = {
+        "nome_pagina": "Informação do visitante",
+        "visitante": visitante
+    }
+
+    return render(request, 'informacoes_visitante.html', context)
