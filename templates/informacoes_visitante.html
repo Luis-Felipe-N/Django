@@ -18,29 +18,54 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Horário de chegada</label>
-                        <input type="text" class="form-control" value="{{ visitante.horario_chegada }}" disabled>
+                        <input 
+                            type="text"
+                            class="form-control"
+                            value="{{ visitante.horario_chegada }}"
+                            disabled
+                        >
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>Número da casa a ser visitada</label>
-                        <input type="text" class="form-control" value="{{ visitante.numero_casa }}" disabled>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ visitante.numero_casa }}"
+                            disabled
+                        >
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label>Horário de autorização de entrada</label>
-                        <input type="text" class="form-control" value="{{ visitante.horario_autorizacao }}" disabled>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ visitante.get_horario_autorizacao }}"
+                            disabled
+                        >
                     </div>
 
                     <div class="form-group col-md-4">
                         <label>Entrada autorizada por</label>
-                        <input type="text" class="form-control" value="{{ visitante.registrado_por }}" disabled>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ visitante.registrado_por }}"
+                            disabled
+                        >
                     </div>
 
                     <div class="form-group col-md-4">
                         <label>Horário de saída</label>
-                        <input type="text" class="form-control" value="{{ visitante.horario_saida }}" disabled>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ visitante.get_horario_saida }}"
+                            disabled
+                        >
                     </div>
                 </div>
             </form>
@@ -53,36 +78,62 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Nome completo</label>
-                        <input type="text" class="form-control" value="{{ visitante.nome_completo }}" disabled>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ visitante.nome_completo }}"
+                            disabled
+                        >
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>CPF</label>
-                        <input type="text" class="form-control" value="{{ visitante.cpf }}" disabled>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ visitante.cpf }}"
+                            disabled
+                        >
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Data de nascimento</label>
-                        <input type="text" class="form-control" value="{{ visitante.data_nascimento }}" disabled>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ visitante.data_nascimento }}"
+                            disabled
+                        >
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>Placa do veículo</label>
-                        <input type="text" class="form-control" value="{{ visitante.placo_do_veiculo }}" disabled>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ visitante.get_placa_veiculo }}"
+                            disabled
+                        >
                     </div>
                 </div>
             </form>
                     
             <p class="mr-2 mt-3 mb-4 text-right">
-                <small>
-                    Visitante registrado em {{ visitante.horario_autorizacao }} por {{ visitante.registrado_por }}
-                </small>
+                {% if visitante.horario_autorizacao %}
+                    <small>
+                        Visitante registrado em {{ visitante.horario_autorizacao }} por {{ visitante.registrado_por }}
+                    </small>
+                {% else %}
+                    <small>
+                        Visitante por {{ visitante.registrado_por }}
+                    </small>
+                {% endif %}
             </p>
         
             <div class="mr-1 text-right">
-                <a href="#" class="btn btn-secondary text-white" type="button">
+                <a href="{% url 'index' %}" class="btn btn-secondary text-white" type="button">
                     <span class="text">Voltar</span>
                 </a>
             </div>

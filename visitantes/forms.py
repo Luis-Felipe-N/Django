@@ -25,3 +25,7 @@ class VisitanteForm( forms.ModelForm ):
                 "required": "O número da casa é obrigatório!"
             }
         }
+
+class AutorizaVisitanteForm(forms.ModelForm):
+    class Meta:
+        model = Visitante

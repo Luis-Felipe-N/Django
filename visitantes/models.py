@@ -1,8 +1,23 @@
+import re
 from django.db import models
 
 # Create your models here.
 
 class Visitante(models.Model):
+
+    STATUS_VISITANTE = [
+        ("AGUARDANDO", "Aguardando finalização"),
+        ("EM_VISITA", "Em visita"),
+        ("FINALIZADO", "Visita finalizada")
+    ]
+
+    status = models.CharField(
+        verbose_name="Status do visitante",
+        max_length=10,
+        choices=STATUS_VISITANTE,
+        default="AGUARDANDO"
+    )
+
     nome_completo = models.CharField(
         verbose_name="Nome completo", max_length=194
     )
@@ -59,6 +74,31 @@ class Visitante(models.Model):
         blank=True,
         null=True,
     )
+
+    def get_horario_saida(self):
+        if self.horario_saida:
+            return self.horario_saida
+        
+        return "Não há horário de saída"
+
+    def get_horario_autorizacao(self):
+        if self.horario_autorizacao:
+            return self.horario_autorizacao
+        
+        return "Visitante aguardando autorização"
+
+    def get_placa_veiculo(self):
+        if self.placa_veiculo:
+            return self.placa_veiculo
+        
+        return "Não há placa de veículo"
+    
+    def get_morador_responsavel(self):
+        if self.morador_responsavel:
+            return self.morador_responsavel
+        
+        return "Visitante aguardando autorização"
+
     class Meta:
         verbose_name = 'Visitante'
         verbose_name_plural = 'Visitantes'

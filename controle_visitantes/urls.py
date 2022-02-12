@@ -9,5 +9,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
     path('registrar', registrar_visitantes, name="registrar_visitantes"),
-    path('visitante/<id>', informacao_visitantes, name="informacao_visitante")
+    path('visitante/<int:id>', informacao_visitantes, name="informacao_visitante")
 ]

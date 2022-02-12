@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 
+{% comment %}
+
+    a tag {%%} é uma forma de usar algumas funcionalidade no html, como o for, if , operadores > < ==
+
+{% endcomment %}
+
 {% load static %}
 <!-- Essa tag permite usar arquivos no template -->
 
@@ -20,7 +26,7 @@
     <body id="page-top">
         <div id="wrapper">
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-user-shield"></i>
                     </div>
@@ -31,7 +37,7 @@
                 <hr class="sidebar-divider my-0">
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url 'index' %}">
                         <i class="fas fa-home"></i>
                         <span>Início</span>
                     </a>
