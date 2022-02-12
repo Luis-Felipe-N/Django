@@ -27,5 +27,23 @@ class VisitanteForm( forms.ModelForm ):
         }
 
 class AutorizaVisitanteForm(forms.ModelForm):
+
+    # Aqui tambem é possivel sobrescrever os campos usando forms e não models
+    morador_responsavel = forms.CharField(
+        required=True
+    )
+
+
     class Meta:
         model = Visitante
+
+        fields = [
+            "morador_responsavel"
+        ]
+
+        error_messages = {
+            "morador_responsavel": {
+                "required": "O morador resposável é obrigatório!"
+            }
+        }
+

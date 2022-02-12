@@ -3,7 +3,7 @@ from multiprocessing import context
 from django.shortcuts import redirect, render, get_object_or_404
 
 from visitantes.models import Visitante
-from visitantes.forms import VisitanteForm
+from visitantes.forms import VisitanteForm, AutorizaVisitanteForm
 
 
 def registrar_visitantes(request):
@@ -37,8 +37,17 @@ def informacao_visitantes(request, id):
 
     visitante = get_object_or_404(Visitante, id=id)
 
-    print('Esse é o vsitante encontrado: ')
-    print(id, visitante)
+    form = AutorizaVisitanteForm()
+
+    if request.method == 'POST':
+        form = AutorizaVisitanteForm(request.POST, instance=visitante)
+        # O instace é para o Django saber qual visitante ele deve alterar
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(request, "Entrada do visitante autorizada com sucesso")
+
 
     context = {
         "nome_pagina": "Informação do visitante",
