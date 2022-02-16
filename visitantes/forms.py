@@ -46,4 +46,3 @@ class AutorizaVisitanteForm(forms.ModelForm):
                 "required": "O morador resposável é obrigatório!"
             }
         }
-

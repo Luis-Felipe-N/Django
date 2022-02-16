@@ -1,9 +1,11 @@
 from django.contrib import messages
-from multiprocessing import context
+from django.http import HttpResponseNotAllowed
 from django.shortcuts import redirect, render, get_object_or_404
 
 from visitantes.models import Visitante
 from visitantes.forms import VisitanteForm, AutorizaVisitanteForm
+
+from django.utils import timezone
 
 
 def registrar_visitantes(request):
@@ -44,14 +46,38 @@ def informacao_visitantes(request, id):
         # O instace é para o Django saber qual visitante ele deve alterar
 
         if form.is_valid():
-            form.save()
+            visitante = form.save(commit=False)
 
+            visitante.status = "EM_VISITA"
+            visitante.horario_autorizacao = timezone.now()
+
+            visitante.save()
+             
             messages.success(request, "Entrada do visitante autorizada com sucesso")
 
+            return redirect("index")
 
     context = {
         "nome_pagina": "Informação do visitante",
-        "visitante": visitante
+        "visitante": visitante,
+        "form": form
     }
 
     return render(request, 'informacoes_visitante.html', context)
+
+def finalizar_visita(request, id):
+
+    if request.method == "POST":
+        visitante = get_object_or_404(Visitante, id=id)
+
+        visitante.status = "FINALIZADO"
+        visitante.horario_saida = timezone.now()
+
+        visitante.save()
+
+        messages.success(request, "Visita finalizada com sucesso")
+
+        return redirect("index")
+    
+    else:
+        return HttpResponseNotAllowed(["POST"], "Método não permitido")
