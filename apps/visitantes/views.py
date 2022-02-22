@@ -6,8 +6,9 @@ from visitantes.models import Visitante
 from visitantes.forms import VisitanteForm, AutorizaVisitanteForm
 
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def registrar_visitantes(request):
 
     form = VisitanteForm()
@@ -38,6 +39,7 @@ def registrar_visitantes(request):
 
     return render( request, 'registrar_visitante.html', context)
 
+@login_required
 def informacao_visitantes(request, id):
 
     visitante = get_object_or_404(Visitante, id=id)
@@ -68,6 +70,7 @@ def informacao_visitantes(request, id):
 
     return render(request, 'informacoes_visitante.html', context)
 
+@login_required
 def finalizar_visita(request, id):
 
     if request.method == "POST":
