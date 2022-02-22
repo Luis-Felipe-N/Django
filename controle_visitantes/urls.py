@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from usuarios.views import index
+from dashboard.views import index
 from visitantes.views import registrar_visitantes, informacao_visitantes, finalizar_visita
 
 urlpatterns = [
